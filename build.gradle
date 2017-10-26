@@ -1,0 +1,57 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+    		maven { url "https://plugins.gradle.org/m2/" }
+    }
+ 
+    dependencies {
+    		classpath "net.ltgt.gradle:gradle-apt-plugin:0.10"
+        classpath "com.prezi.pride:gradle-pride-plugin:0.11"
+	}
+	
+}
+
+
+group = 'io.zrz.hai'
+
+version = '0.1-SNAPSHOT'
+
+apply plugin: 'pride'
+apply plugin: 'eclipse'
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'java-library'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+
+dependencies {
+
+	compile 'javax.annotation:javax.annotation-api:1.3'
+	compile 'org.apache.commons:commons-lang3:3.6'
+
+	apt 'org.immutables:immutables:2.5.6'
+	apt "org.immutables:value:2.5.6"
+
+	apt 'org.projectlombok:lombok:1.16.18'
+
+	compileOnly 'org.projectlombok:lombok:1.16.18'
+	
+	compile "org.immutables:value:2.5.6"	
+	compile 'org.immutables:immutables:2.5.6'
+
+	compile 'com.google.code.findbugs:findbugs:3.0.1'
+  compile 'com.google.guava:guava:23.0'
+  
+  // for escaping identifiers/values
+  compile 'org.postgresql:postgresql:42.1.4.jre7'
+    
+  testImplementation 'junit:junit:4.12'
+	testImplementation 'ch.qos.logback:logback-classic:1.2.2'
+
+}
