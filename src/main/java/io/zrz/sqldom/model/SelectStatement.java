@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import org.immutables.value.Value;
 import org.immutables.value.Value.Style.ImplementationVisibility;
 
-import io.zrz.hai.sql.model.ImmutableSelectExpr;
 import io.zrz.sqldom.SqlModel;
 
 @Value.Immutable

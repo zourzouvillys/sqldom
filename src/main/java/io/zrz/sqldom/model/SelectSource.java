@@ -1,8 +1,5 @@
 package io.zrz.sqldom.model;
 
-import io.zrz.hai.sql.model.ImmutableJoinSource;
-import io.zrz.hai.sql.model.ImmutableTableRefExpr;
-
 public interface SelectSource {
 
   String exportedName();

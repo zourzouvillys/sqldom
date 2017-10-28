@@ -3,8 +3,6 @@ package io.zrz.sqldom.model;
 import org.immutables.value.Value;
 import org.immutables.value.Value.Style.ImplementationVisibility;
 
-import io.zrz.hai.sql.model.ImmutableWithClause;
-
 @Value.Immutable
 @Value.Style(visibility = ImplementationVisibility.PUBLIC, depluralize = true)
 @Value.Modifiable

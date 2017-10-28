@@ -7,25 +7,25 @@ buildscript {
  
     dependencies {
     		classpath "net.ltgt.gradle:gradle-apt-plugin:0.10"
-        classpath "com.prezi.pride:gradle-pride-plugin:0.11"
 	}
 	
 }
 
 
-group = 'io.zrz.hai'
+plugins {
+  id "com.jfrog.bintray" version "1.7.3"
+}
 
-version = '0.1-SNAPSHOT'
+group = 'io.zrz.sqldom'
 
-apply plugin: 'pride'
+version = '0.1'
+
 apply plugin: 'eclipse'
 apply plugin: 'net.ltgt.apt'
 apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 
-// In this section you declare where to find the dependencies of your project
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 
@@ -55,3 +55,49 @@ dependencies {
 	testImplementation 'ch.qos.logback:logback-classic:1.2.2'
 
 }
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
+
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+
+publishing {
+  publications {
+    maven(MavenPublication) { 
+    	artifact 'build/libs/sqldom-0.1-SNAPSHOT.jar'
+      	groupId 'io.zrz.sqldom'
+      	artifactId 'sqldom'
+      	version '0.1'
+    }
+  }
+}
+
+
+bintray {
+
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    
+  		publications = ['maven']
+    
+    pkg {
+        repo = 'maven'
+        name = 'sqldom'
+        userOrg = user
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = false
+        vcsUrl = 'https://github.com/zourzouvillys/sqldom.git'
+    }    
+    
+}
+
+
+
